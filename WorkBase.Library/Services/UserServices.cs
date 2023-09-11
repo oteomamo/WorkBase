@@ -59,7 +59,5 @@ namespace WorkBase.Library.Services
             return user;
         }
 
-
-
     }
 }
