@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Linq;
-using WorkBase.Library.DTO;
+using WorkBase.Library.Models;
 
-namespace WorkBase.Library.Models
+namespace WorkBase.Library.DTO
 {
     public enum ApplicationStatus
     {
         Pending,
         Closed
     }
-    public class Application
+    public class ApplicationDTO
     {
         public int Id { get; set; }
         public string Company { get; set; }
@@ -23,28 +22,28 @@ namespace WorkBase.Library.Models
         public ApplicationStatus Status { get; set; }
         public string Notes { get; set; }
 
-
-        public Application()
-        {
+        public ApplicationDTO() 
+        { 
             Id = 0;
             Company = string.Empty;
             JobTitle = string.Empty;
             JobPosting = string.Empty;
             DateApplied = DateTime.Now;
-            Status = ApplicationStatus.Pending;
             Notes = string.Empty;
+            Status = ApplicationStatus.Pending;
         }
 
-        public Application(ApplicationDTO dto)
+        public ApplicationDTO(Application application)
         {
-            this.Id = dto.Id;
-            this.Company = dto.Company;
-            this.JobTitle = dto.JobTitle;
-            this.JobPosting = dto.JobPosting;
-            this.DateApplied = dto.DateApplied;
-            this.Status = (ApplicationStatus)dto.Status;
-            this.Notes = dto.Notes;
+            this.Id = application.Id;
+            Company = application.Company;
+            JobTitle = application.JobTitle;
+            JobPosting = application.JobPosting;
+            DateApplied = application.DateApplied;
+            Notes = application.Notes;
+            Status = (ApplicationStatus)application.Status;
         }
+
 
         public override string ToString()
         {

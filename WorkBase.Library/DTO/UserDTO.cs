@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WorkBase.Library.DTO;
+using WorkBase.Library.Models;
 
-namespace WorkBase.Library.Models
+namespace WorkBase.Library.DTO
 {
-    public class User
+    public class UserDTO
     {
+
         public int Id { get; set; }
         public string Name { get; set; }
         public string EmailAddress { get; set; }
@@ -20,8 +21,7 @@ namespace WorkBase.Library.Models
 
         public List<Application>? Applications { get; set; }
 
-
-        public User()
+        public UserDTO() 
         {
             Id = 0;
             Name = string.Empty;
@@ -32,16 +32,16 @@ namespace WorkBase.Library.Models
             Applications = new List<Application>();
         }
 
-        public User(UserDTO dto)
+        public UserDTO(User user)
         {
-            this.Id = dto.Id;
-            this.Name = dto.Name;
-            this.EmailAddress = dto.EmailAddress;
-            this.Password = dto.Password;
-            this.TotalApplications = dto.TotalApplications;
-            this.ActiveApplication = dto.ActiveApplication;
-            this.Applications = dto.Applications;
-
+            this.Id = user.Id;
+            Name = user.Name;
+            EmailAddress= user.EmailAddress;
+            Password = user.Password;
+            TotalApplications = user.TotalApplications;
+            ActiveApplication = user.ActiveApplication;
+            Applications = new List<Application>();
         }
+
     }
 }
