@@ -7,11 +7,7 @@ using WorkBase.Library.Models;
 
 namespace WorkBase.Library.DTO
 {
-    public enum ApplicationStatus
-    {
-        Pending,
-        Closed
-    }
+
     public class ApplicationDTO
     {
         public int Id { get; set; }
@@ -30,7 +26,6 @@ namespace WorkBase.Library.DTO
             JobPosting = string.Empty;
             DateApplied = DateTime.Now;
             Notes = string.Empty;
-            Status = ApplicationStatus.Pending;
         }
 
         public ApplicationDTO(Application application)
@@ -41,7 +36,6 @@ namespace WorkBase.Library.DTO
             JobPosting = application.JobPosting;
             DateApplied = application.DateApplied;
             Notes = application.Notes;
-            Status = (ApplicationStatus)application.Status;
         }
 
 
