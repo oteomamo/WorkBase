@@ -30,8 +30,5 @@ namespace WorkBase.Library.Models
             ActiveApplication = 0;
             Applications = new List<Application>();
         }
-
-
-
     }
 }

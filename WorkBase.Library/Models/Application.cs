@@ -10,26 +10,28 @@ namespace WorkBase.Library.Models
     public class Application
     {
         public int Id { get; set; }
-        public string EmployerName { get; set; }
+        public string Company { get; set; }
         public string JobTitle { get; set; }
+        public string JobPosting { get; set; }
         public DateTime DateApplied { get; set; }
         public string ApplicationStatus { get; set; }
-        public string JobDescription { get; set; }
+        public string Notes { get; set; }
 
 
         public Application()
         {
             Id = 0;
-            EmployerName = string.Empty;
+            Company = string.Empty;
             JobTitle = string.Empty;
+            JobPosting = string.Empty;
             DateApplied = DateTime.Now;
             ApplicationStatus = string.Empty;
-            JobDescription = string.Empty;
+            Notes = string.Empty;
         }
 
         public override string ToString()
         {
-            return string.Format(" Id: {0,-3}\tEmployerName: {1,-20}\tJobTitle: {2,-20}\tDateApplied: {3,-10:MM/dd/yyyy}\tApplicationStatus: {4,-5}\tJobDescription: {5,-30}", Id, EmployerName, JobTitle, DateApplied, ApplicationStatus, JobDescription);
+            return string.Format(" Id: {0,-3}\tEmployerName: {1,-20}\tJobTitle: {2,-20}\tApplicationStatus: {4,-5}", Id, Company, JobTitle, ApplicationStatus);
         }
     }
 }

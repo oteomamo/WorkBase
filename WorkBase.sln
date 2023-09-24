@@ -3,11 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkBase", "WorkBase\WorkBase.csproj", "{6BA010A2-256D-46D1-B01F-E97C3E341235}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkBase.Library", "WorkBase.Library\WorkBase.Library.csproj", "{6C257F3D-8A00-454F-9313-597C8A334BC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkBase.MAUI", "WorkBase.MAUI\WorkBase.MAUI.csproj", "{9586CD81-FD49-4DF6-BA07-F94000EE4F00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkBase.MAUI", "WorkBase.MAUI\WorkBase.MAUI.csproj", "{9586CD81-FD49-4DF6-BA07-F94000EE4F00}"
 	ProjectSection(ProjectDependencies) = postProject
 		{6C257F3D-8A00-454F-9313-597C8A334BC7} = {6C257F3D-8A00-454F-9313-597C8A334BC7}
 	EndProjectSection
@@ -18,10 +16,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6BA010A2-256D-46D1-B01F-E97C3E341235}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6BA010A2-256D-46D1-B01F-E97C3E341235}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6BA010A2-256D-46D1-B01F-E97C3E341235}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6BA010A2-256D-46D1-B01F-E97C3E341235}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6C257F3D-8A00-454F-9313-597C8A334BC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6C257F3D-8A00-454F-9313-597C8A334BC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C257F3D-8A00-454F-9313-597C8A334BC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
