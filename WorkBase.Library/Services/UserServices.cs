@@ -1,63 +1,95 @@
-﻿using System;
+﻿
+using WorkBase.Library.DTO;
+using WorkBase.Library.Utilities;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
-using WorkBase.Library.Models;
 
 namespace WorkBase.Library.Services
 {
-    public class UserServices
+    public class UserService
     {
-        private static UserServices? instance;
+        private static UserService? instance;
 
-        public static UserServices Current
+        public static UserService Current
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = new UserServices();
+                    instance = new UserService();
                 }
                 return instance;
             }
         }
 
-        private List<User> users;
+        private List<UserDTO> users;
 
-        public List<User> Users
+        public List<UserDTO> Users
         {
             get
             {
-                return users;
+                return users ?? new List<UserDTO>();
             }
         }
 
-        private UserServices()
+        public IEnumerable<UserDTO> Search(string query)
         {
-            users = new List<User>
-            {
-                   new User { Id = 1, Name = "John Doe", EmailAddress = "jd@gmail.com", ActiveApplication = 1, TotalApplications = 2, Password = "1234" },
-                   new User { Id = 1, Name = "Bob Smith", EmailAddress = "bs@gmail.com", ActiveApplication = 1, TotalApplications = 2, Password = "1234" },
-                   new User { Id = 1, Name = "Ana Smith", EmailAddress = "as@gmail.com", ActiveApplication = 1, TotalApplications = 2, Password = "1234" }
-            };
+            return Users
+                .Where(c => c.Username.ToUpper()
+                    .Contains(query.ToUpper()));
         }
 
-        public User? GetUser(string emailAddress, string password)
+        private UserService()
         {
-            User? user = null;
+            var response = new WebRequestHandler()
+                     .Get("/User").Result;
+            users = JsonConvert
+                   .DeserializeObject<List<UserDTO>>(response) ?? new List<UserDTO>();
+        }
 
-            foreach (User u in users)
+        public UserDTO? Get(int id)
+        {
+            return Users.FirstOrDefault(c => c.Id == id);
+        }
+
+        public void Delete(int id)
+        {
+            var response = new WebRequestHandler()
+                .Delete($"/User/Delete/{id}").Result;
+
+            if (response == "SUCCESS")
             {
-                if (u.EmailAddress == emailAddress && u.Password == password)
+                var clientToDelete = users.FirstOrDefault(c => c.Id == id);
+                if (clientToDelete != null)
                 {
-                    user = u;
-                    break;
+                    users.Remove(clientToDelete);
                 }
             }
-
-            return user;
         }
 
+        public void AddOrUpdate(UserDTO c)
+        {
+            var response = new WebRequestHandler().Post("/User", c).Result;
+            var myUpdatedUsers = JsonConvert.DeserializeObject<UserDTO>(response);
+            if (myUpdatedUsers != null)
+            {
+                var existingUser = users.FirstOrDefault(c => c.Id == myUpdatedUsers.Id);
+                if (existingUser == null)
+                {
+                    users.Add(myUpdatedUsers);
+                }
+                else
+                {
+                    var index = users.IndexOf(existingUser);
+                    users.RemoveAt(index);
+                    users.Insert(index, myUpdatedUsers);
+                }
+            }
+        }
     }
 }

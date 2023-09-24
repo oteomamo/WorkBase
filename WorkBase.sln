@@ -10,6 +10,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkBase.MAUI", "WorkBase.M
 		{6C257F3D-8A00-454F-9313-597C8A334BC7} = {6C257F3D-8A00-454F-9313-597C8A334BC7}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrindChat.API", "GrindChat.API\GrindChat.API.csproj", "{411ADF6F-0C62-43ED-9662-15DFF32AB62A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6C257F3D-8A00-454F-9313-597C8A334BC7} = {6C257F3D-8A00-454F-9313-597C8A334BC7}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +31,10 @@ Global
 		{9586CD81-FD49-4DF6-BA07-F94000EE4F00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9586CD81-FD49-4DF6-BA07-F94000EE4F00}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9586CD81-FD49-4DF6-BA07-F94000EE4F00}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{411ADF6F-0C62-43ED-9662-15DFF32AB62A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{411ADF6F-0C62-43ED-9662-15DFF32AB62A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{411ADF6F-0C62-43ED-9662-15DFF32AB62A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{411ADF6F-0C62-43ED-9662-15DFF32AB62A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
