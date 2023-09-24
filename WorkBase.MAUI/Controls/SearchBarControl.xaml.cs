@@ -1,6 +1,6 @@
 using System.Windows.Input;
 
-namespace GrindChat.MAUI.Controls;
+namespace WorkBase.MAUI.Controls;
 
 public partial class SearchBarControl : ContentView
 {

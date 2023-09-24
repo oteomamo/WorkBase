@@ -53,6 +53,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Folder Include="ViewModels\" />
+	  <Folder Include="Views\" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Controls\SearchBarControl.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

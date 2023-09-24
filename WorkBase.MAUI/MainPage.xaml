@@ -6,8 +6,10 @@
     <ScrollView>
         <VerticalStackLayout
             Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
+            Padding="30,20"
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="CenterAndExpand">
+
 
             <Image
                 Source="dotnet_bot.png"
@@ -16,23 +18,40 @@
                 HorizontalOptions="Center" />
 
             <Label
-                Text="Hello, World!"
+                Text="WorkBase!"
                 SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"
                 HorizontalOptions="Center" />
 
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
+            <Entry
+                x:Name="UsernameEntry"
+                Placeholder="Username"
+                WidthRequest="200"
+                HeightRequest="30"
+                HorizontalOptions="Center" />
+
+            <Entry
+                x:Name="PasswordEntry"
+                Placeholder="Password"
+                IsPassword="True"
+                WidthRequest="200"
+                HeightRequest="30"
                 HorizontalOptions="Center" />
 
             <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
+                x:Name="SigninBtn"
+                Text="SIGN IN"
+                WidthRequest="200"
+                HeightRequest="30"
+                Clicked="SigninBtnClicked"
+                HorizontalOptions="Center" />
+
+            <Button
+                x:Name="SignupBtn"
+                Text="SIGN UP"
+                WidthRequest="200"
+                HeightRequest="30"
+                Clicked="SignupBtnClicked"
                 HorizontalOptions="Center" />
 
         </VerticalStackLayout>
