@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GrindChat.Library.Utilities
+namespace WorkBase.Library.Utilities
 {
     public class WebRequestHandler
     {

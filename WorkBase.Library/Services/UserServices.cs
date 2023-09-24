@@ -40,7 +40,7 @@ namespace WorkBase.Library.Services
         public IEnumerable<UserDTO> Search(string query)
         {
             return Users
-                .Where(c => c.Username.ToUpper()
+                .Where(c => c.Name.ToUpper()
                     .Contains(query.ToUpper()));
         }
 
