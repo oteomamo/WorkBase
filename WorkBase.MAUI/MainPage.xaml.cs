@@ -1,4 +1,5 @@
 ﻿using WorkBase.Library.Services;
+using WorkBase.MAUI.ViewModels;
 
 namespace WorkBase.MAUI
 {
@@ -34,6 +35,8 @@ namespace WorkBase.MAUI
                 {
                     await DisplayAlert("Error", "Invalid email or password!", "OK");
                 }
+
+                (BindingContext as UserViewViewModel).RefreshClientList();
             }
             catch (Exception ex)
             {
@@ -44,7 +47,7 @@ namespace WorkBase.MAUI
 
         private void SignupBtnClicked(object sender, EventArgs e)
         {
-            Shell.Current.GoToAsync("//UserDetail");
+            Shell.Current.GoToAsync("//UserSignUpView");
         }
 
 

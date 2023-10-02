@@ -42,6 +42,8 @@
                 WidthRequest="200"
                 HeightRequest="30"
                 Clicked="SigninBtnClicked"
+                Command="{Binding Path = EditCommand}"
+                CommandParameter="{Binding}"
                 HorizontalOptions="Center" />
 
             <Button

@@ -10,20 +10,18 @@ public partial class UserDetailView : ContentPage
 		InitializeComponent();
 	}
 
-    private async void createAccountButtonClicked(object sender, EventArgs e)
+    private void OpenClicked(object sender, EventArgs e)
     {
-        if (!(BindingContext as UserViewModel).PasswordsMatch)
-        {
-            await DisplayAlert("Error", "Passwords do not match!", "OK");
-            return;
-        }
-
-        (BindingContext as UserViewModel).AddOrUpdate();
-        await Shell.Current.GoToAsync("//MainPage");
+        Shell.Current.GoToAsync("//ApplicationDetail");
     }
-    private void cancleButtonClicked(object sender, EventArgs e)
+    private void ExitClicked(object sender, EventArgs e)
     {
         Shell.Current.GoToAsync("//MainPage");
+    }
+
+    private void EditClicked(object sender, EventArgs e)
+    {
+        (BindingContext as ApplicationViewViewModel).RefreshApplicationList();
     }
 
     private void OnArriving(object sender, NavigatedToEventArgs e)
@@ -31,9 +29,12 @@ public partial class UserDetailView : ContentPage
         BindingContext = new UserViewModel(UserId);
 
         (BindingContext as UserViewModel).RefreshApplications();
+    }
 
-        retypePasswordEntry.SetBinding(Entry.TextProperty, new Binding("RetypedPassword"));
-
+    private void RefreshClicked(object sender, EventArgs e)
+    {
+        var viewModel = BindingContext as UserViewModel;
+        viewModel?.RefreshApplications();
     }
 
 

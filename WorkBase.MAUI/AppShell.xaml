@@ -13,8 +13,8 @@
         Route="MainPage" />
     <ShellContent
     Title="User Management"
-    ContentTemplate="{DataTemplate local2:UserView}"
-    Route="Users" />
+    ContentTemplate="{DataTemplate local2:UserSignUpView}"
+    Route="UserSignUpView" />
     <ShellContent
     Title="Application Management"
     ContentTemplate="{DataTemplate local2:ApplicationView}"
