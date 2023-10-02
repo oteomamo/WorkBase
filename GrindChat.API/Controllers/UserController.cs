@@ -47,5 +47,18 @@ namespace WorkBase.API.Controllers
         {
             return new UserEC().Search(query.Query);
         }
+
+        [HttpPost("Authenticate")]
+        public IActionResult Authenticate(UserCredentials credentials)
+        {
+            var user = new UserEC().Authenticate(credentials.EmailAddress, credentials.Password);
+            if (user != null)
+            {
+                return Ok(new UserDTO(user));
+            }
+            return BadRequest("Invalid email or password!");
+        }
+
+
     }
 }

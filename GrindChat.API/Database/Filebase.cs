@@ -28,7 +28,7 @@ namespace WorkBase.API.Database
 
         public Filebase()
         {
-            _root = @"C:\temp";
+            _root = @"C:\temp\WorkBase";
             _userRoot = $"{_root}\\Users";
             _applicationRoot = $"{_root}\\Applications";
         }
@@ -101,6 +101,8 @@ namespace WorkBase.API.Database
             }
             return true;
         }
+
+
 
 
         /*    ++++++++++++++    Application Section     +++++++++++++    */

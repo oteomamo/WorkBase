@@ -27,8 +27,12 @@ namespace WorkBase.API.EC
                 }
                 return userToDelete != null ? new UserDTO(userToDelete) : null;
             }
+            public User? Authenticate(string email, string password)
+            {
+                return Filebase.Current.Users.FirstOrDefault(u => u.EmailAddress == email && u.Password == password);
+            }
 
-            public IEnumerable<UserDTO> Search(string query = "")
+        public IEnumerable<UserDTO> Search(string query = "")
             {
                 return Filebase.Current.Users
                     .Where(c => c.Name.ToUpper()

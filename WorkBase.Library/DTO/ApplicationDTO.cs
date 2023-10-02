@@ -17,6 +17,7 @@ namespace WorkBase.Library.DTO
         public DateTime DateApplied { get; set; }
         public ApplicationStatus Status { get; set; }
         public string Notes { get; set; }
+        public int UserId { get; set; }
 
         public ApplicationDTO() 
         { 

@@ -4,11 +4,28 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:WorkBase.MAUI"
+    xmlns:local2="clr-namespace:WorkBase.MAUI.Views"
     Shell.FlyoutBehavior="Disabled">
 
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
+    <ShellContent
+    Title="User Management"
+    ContentTemplate="{DataTemplate local2:UserView}"
+    Route="Users" />
+    <ShellContent
+    Title="Application Management"
+    ContentTemplate="{DataTemplate local2:ApplicationView}"
+    Route="Applications" />
+    <ShellContent
+    Title="User Details"
+    ContentTemplate="{DataTemplate local2:UserDetailView}"
+    Route="UserDetail" />
+    <ShellContent
+    Title="Application Details"
+    ContentTemplate="{DataTemplate local2:ApplicationDetailView}"
+    Route="ApplicationDetail" />
 
 </Shell>
