@@ -51,13 +51,13 @@ namespace WorkBase.MAUI.ViewModels
         private void ExecuteAdd()
         {
             ApplicationService.Current.AddOrUpdate(Model);
-            Shell.Current.GoToAsync($"//ClientDetail?clientId={Model.UserId}");
+            Shell.Current.GoToAsync($"//UserDetail?userId={Model.UserId}");
         }
 
         public void ExecuteEdit(int id)
         {
             ApplicationService.Current.AddOrUpdate(Model);
-            Shell.Current.GoToAsync($"//ApplicationDetail?clientId={Model.UserId}&projectId={Model.Id}");
+            Shell.Current.GoToAsync($"//ApplicationDetail?userId={Model.UserId}&projectId={Model.Id}");
         }
 
 

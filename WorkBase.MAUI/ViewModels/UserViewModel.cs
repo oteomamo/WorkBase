@@ -112,6 +112,11 @@ namespace WorkBase.MAUI.ViewModels
             }UserService.Current.AddOrUpdate(Model);
         }
 
+        public void Update()
+        {
+            UserService.Current.AddOrUpdate(Model);
+        }
+
         public void RefreshApplications()
         {
             NotifyPropertyChanged(nameof(Applications));

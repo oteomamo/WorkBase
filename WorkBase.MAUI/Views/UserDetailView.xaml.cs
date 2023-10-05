@@ -14,17 +14,29 @@ public partial class UserDetailView : ContentPage
     {
         Shell.Current.GoToAsync("//ApplicationDetail");
     }
-    private void ExitClicked(object sender, EventArgs e)
+    private async void ExitClicked(object sender, EventArgs e)
     {
-        Shell.Current.GoToAsync("//MainPage");
+        try
+        {
+            if (BindingContext is UserViewModel viewModel)
+            {
+                viewModel.Update();
+                await Shell.Current.GoToAsync("//MainPage");
+            }
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", ex.Message, "OK");
+        }
     }
+
 
     private void EditClicked(object sender, EventArgs e)
     {
         (BindingContext as ApplicationViewViewModel).RefreshApplicationList();
     }
 
-    private void OnArriving(object sender, NavigatedToEventArgs e)
+    private void OnArrived(object sender, NavigatedToEventArgs e)
     {
         BindingContext = new UserViewModel(UserId);
 

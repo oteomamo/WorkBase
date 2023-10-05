@@ -5,7 +5,7 @@
              xmlns:c="clr-namespace:WorkBase.MAUI.Controls"
              x:Class="WorkBase.MAUI.Views.UserDetailView"
              Title="UserDetailView"
-             NavigatedTo="OnArriving">
+             >
     <VerticalStackLayout>
         <Grid>
             <Grid.ColumnDefinitions>

@@ -1,5 +1,6 @@
 ﻿using WorkBase.Library.Services;
 using WorkBase.MAUI.ViewModels;
+using WorkBase.MAUI.Views;
 
 namespace WorkBase.MAUI
 {
@@ -28,15 +29,21 @@ namespace WorkBase.MAUI
 
                 if (user != null)
                 {
+                    var userViewPage = new UserDetailView();
+                    userViewPage.BindingContext = new UserViewModel(user);
+                    await Shell.Current.Navigation.PushAsync(userViewPage);
 
-                    await Shell.Current.GoToAsync("//UserDetail");
                 }
                 else
                 {
                     await DisplayAlert("Error", "Invalid email or password!", "OK");
                 }
 
-                (BindingContext as UserViewViewModel).RefreshClientList();
+                //(BindingContext as UserViewViewModel).RefreshClientList();
+                if (BindingContext is UserViewViewModel viewModel)
+                {
+                    viewModel.RefreshClientList();
+                }
             }
             catch (Exception ex)
             {
