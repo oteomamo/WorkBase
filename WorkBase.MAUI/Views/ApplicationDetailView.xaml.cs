@@ -16,16 +16,6 @@ public partial class ApplicationDetailView : ContentPage
 		InitializeComponent();
 	}
 
-
-    /*    private void OnArrived(object sender, NavigatedToEventArgs e)
-        {
-            BindingContext = new ApplicationViewModel(UserId, ApplicationId);
-    *//*        var viewModel = BindingContext as ApplicationViewModel;
-            viewModel.Model.UserId = UserId;
-            viewModel.Model.Id = ApplicationId; // Ensure the Id is set*//*
-            (BindingContext as ApplicationViewModel).RefreshApplications();
-        }*/
-
     private void OnArrived(object sender, NavigatedToEventArgs e)
     {
         BindingContext = new ApplicationViewModel(UserId, ApplicationId);
@@ -37,14 +27,6 @@ public partial class ApplicationDetailView : ContentPage
             viewModel.RefreshApplications();
         }
     }
-
-
-    /*    private void OkClicked(object sender, EventArgs e)
-        {
-            //(BindingContext as ApplicationViewModel).AddOrUpdate();
-
-            Shell.Current.GoToAsync("//UserDetail");
-        }*/
 
     private void OkClicked(object sender, EventArgs e)
     {

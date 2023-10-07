@@ -24,12 +24,9 @@ namespace WorkBase.MAUI.ViewModels
         public void ExecuteSearchCommand()
         {
 
-            NotifyPropertyChanged(nameof(Users));
+            NotifyPropertyChanged(nameof(ApplicationViewViewModel.Applications));
         }
-        public UserViewViewModel()
-        {
-            SearchCommand = new Command(ExecuteSearchCommand);
-        }
+
 
         public ObservableCollection<UserViewModel> Users
         {

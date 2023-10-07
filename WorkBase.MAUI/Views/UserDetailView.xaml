@@ -29,9 +29,10 @@
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <c:SearchBarControl Grid.Column="0" 
-                        QueryText="{Binding Query}"
-                        SearchButtonText="Search"
-                        SearchCommand="{Binding SearchCommand}"/>
+                                QueryText="{Binding Query}"
+                                SearchButtonText="Search"
+                                SearchCommand="{Binding SearchCommand}"/>
+
                 <Button Grid.Column="1" Text="Add Application" Command="{Binding AddApplicationCommand}"></Button>
             </Grid>
         </Grid>
@@ -45,6 +46,7 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="12*"/>
                                 <ColumnDefinition/>
+                                <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" VerticalTextAlignment="Center" Text="{Binding Display}"></Label>
                             <Button Grid.Column="1" 
@@ -53,6 +55,11 @@
                             <!--Text="Open"
                             Command="{Binding EditCommand}"
                             CommandParameter="{Binding}"></Button>-->
+                            <Button Grid.Column="2" 
+                                    Text="Delete" 
+                                    Command="{Binding DeleteCommand}"
+                                    CommandParameter="{Binding}"
+                                    Clicked="DeleteClicked"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

@@ -26,6 +26,10 @@ namespace WorkBase.MAUI.ViewModels
         {
             NotifyPropertyChanged(nameof(Applications));
         }
+        public ApplicationViewViewModel()
+        {
+            SearchCommand = new Command(ExecuteSearchCommand);
+        }
 
         public ObservableCollection<ApplicationViewModel> Applications
         {

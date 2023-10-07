@@ -1,3 +1,4 @@
+using WorkBase.Library.Services;
 using WorkBase.MAUI.ViewModels;
 
 namespace WorkBase.MAUI.Views;
@@ -81,6 +82,17 @@ public partial class UserDetailView : ContentPage
             var userId = appViewModel.Model.UserId;
 
             Shell.Current.GoToAsync($"//ApplicationDetail?userId={userId}&applicationId={applicationId}");
+        }
+    }
+    private void DeleteClicked(object sender, EventArgs e)
+    {
+        var button = sender as Button;
+        var application = button?.BindingContext as ApplicationViewModel;
+        if (application != null)
+        {
+            ApplicationService.Current.Delete(application.Model.Id);
+            var viewModel = BindingContext as UserViewModel;
+            viewModel?.RefreshApplications();
         }
     }
 

@@ -44,9 +44,9 @@ namespace WorkBase.MAUI.ViewModels
             }
         }
 
-        public void ExecuteDelete(int id)
+        public void ExecuteDelete()
         {
-            ApplicationService.Current.Delete(id);
+            ApplicationService.Current.Delete(Model.Id);
         }
 
         private void ExecuteAdd()
@@ -70,8 +70,9 @@ namespace WorkBase.MAUI.ViewModels
 
         public void SetupCommands()
         {
-            DeleteCommand = new Command(
-                (c) => ExecuteDelete((c as ApplicationViewModel).Model.Id));
+            /*            DeleteCommand = new Command(
+                            (c) => ExecuteDelete((c as ApplicationViewModel).Model.Id));*/
+            DeleteCommand = new Command(ExecuteDelete);
             EditCommand = new Command(
                 (c) => ExecuteEdit((c as ApplicationViewModel).Model.Id));
             AddCommand = new Command(ExecuteAdd);
