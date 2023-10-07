@@ -55,6 +55,7 @@ namespace WorkBase.MAUI
         private void SignupBtnClicked(object sender, EventArgs e)
         {
             Shell.Current.GoToAsync("//UserSignUpView");
+            //Shell.Current.GoToAsync("//ApplicationDetail");
         }
 
 

@@ -26,9 +26,10 @@ namespace WorkBase.MAUI.ViewModels
                 }
                 return new ObservableCollection<ApplicationViewModel>(ApplicationService
                     .Current.Applications.Where(p => p.UserId == Model.Id)
-                    .Select(k => new ApplicationViewModel(k)));
+                    .Select(r => new ApplicationViewModel(r)));
             }
         }
+
 
 
         public ICommand DeleteCommand { get; private set; }

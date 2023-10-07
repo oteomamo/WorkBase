@@ -37,7 +37,6 @@
         </Grid>
         <ListView
     ItemsSource="{Binding Applications}"
-    
     >
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -49,9 +48,11 @@
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" VerticalTextAlignment="Center" Text="{Binding Display}"></Label>
                             <Button Grid.Column="1" 
-                            Text="Open"
+                                    Text="Open"
+                                    Clicked="OpenApplicationClicked"/>
+                            <!--Text="Open"
                             Command="{Binding EditCommand}"
-                            CommandParameter="{Binding}"></Button>
+                            CommandParameter="{Binding}"></Button>-->
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

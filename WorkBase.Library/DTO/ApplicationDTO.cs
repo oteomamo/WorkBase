@@ -15,7 +15,7 @@ namespace WorkBase.Library.DTO
         public string JobTitle { get; set; }
         public string JobPosting { get; set; }
         public DateTime DateApplied { get; set; }
-        public ApplicationStatus Status { get; set; }
+        //public ApplicationStatus Status { get; set; }
         public string Notes { get; set; }
         public int UserId { get; set; }
 
@@ -26,6 +26,7 @@ namespace WorkBase.Library.DTO
             JobTitle = string.Empty;
             JobPosting = string.Empty;
             DateApplied = DateTime.Now;
+            UserId = 0;
             Notes = string.Empty;
         }
 
@@ -36,13 +37,14 @@ namespace WorkBase.Library.DTO
             JobTitle = application.JobTitle;
             JobPosting = application.JobPosting;
             DateApplied = application.DateApplied;
+            this.UserId = application.UserId;
             Notes = application.Notes;
         }
 
 
         public override string ToString()
         {
-            return string.Format(" Id: {0,-3}\tEmployerName: {1,-20}\tJobTitle: {2,-20}\tApplicationStatus: {4,-5}", Id, Company, JobTitle, Status);
+            return string.Format(" Id: {0,-3}\tEmployerName: {1,-20}\tJobTitle: {2,-20}", Id, Company, JobTitle);
         }
     }
 }

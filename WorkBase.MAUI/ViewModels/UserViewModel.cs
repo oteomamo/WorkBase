@@ -81,11 +81,18 @@ namespace WorkBase.MAUI.ViewModels
                 (c) => ExecuteEdit((c as UserViewModel).Model.Id));
             AddCommand = new Command(
                 (c) => ExecuteAdd((c as UserViewModel).Model.Id));
+            AddApplicationCommand = new Command(ExecuteAddApplication);
         }
 
         public ICommand AddCommand { get; private set; }
         public ICommand EditCommand { get; private set; }
         public ICommand DeleteCommand { get; private set; }
+        public ICommand AddApplicationCommand { get; private set; }
+
+        private void ExecuteAddApplication()
+        {
+            Shell.Current.GoToAsync($"//ApplicationDetail?userId={Model.Id}");
+        }
 
         public void ExecuteDelete(int id)
         {

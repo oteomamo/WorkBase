@@ -55,6 +55,11 @@ namespace WorkBase.Library.Services
         {
             return Applications.FirstOrDefault(c => c.Id == id);
         }
+        public ApplicationDTO? GetUpdate(int id)
+        {
+            return Applications.FirstOrDefault(p => p.UserId == id);
+        }
+
 
         public void Delete(int id)
         {
@@ -71,24 +76,78 @@ namespace WorkBase.Library.Services
             }
         }
 
+        /*        public void AddOrUpdate(ApplicationDTO c)
+                {
+                    var response = new WebRequestHandler()
+                        .Post("/Application", c).Result;
+                    var myUpdatedApplications = JsonConvert.DeserializeObject<ApplicationDTO>(response);
+                    if (myUpdatedApplications != null)
+                    {
+                        var existingApplication = applications.FirstOrDefault(c => c.Id == myUpdatedApplications.Id);
+                        if (existingApplication == null)
+                        {
+                            applications.Add(myUpdatedApplications);
+                        }
+                        else
+                        {
+                            var index = applications.IndexOf(existingApplication);
+                            applications.RemoveAt(index);
+                            applications.Insert(index, myUpdatedApplications);
+                        }
+                    }
+                }*/
+
         public void AddOrUpdate(ApplicationDTO c)
         {
-            var response = new WebRequestHandler().Post("/Application", c).Result;
-            var myUpdatedApplications = JsonConvert.DeserializeObject<ApplicationDTO>(response);
-            if (myUpdatedApplications != null)
+            if (c.Id > 0)
             {
-                var existingApplication = applications.FirstOrDefault(c => c.Id == myUpdatedApplications.Id);
-                if (existingApplication == null)
-                {
-                    applications.Add(myUpdatedApplications);
-                }
-                else
-                {
-                    var index = applications.IndexOf(existingApplication);
-                    applications.RemoveAt(index);
-                    applications.Insert(index, myUpdatedApplications);
-                }
+                // Update existing application logic
+                Update(c);
+            }
+            else
+            {
+                // Add new application logic
+                Add(c);
             }
         }
+
+
+        private void Update(ApplicationDTO c)
+        {
+            // Assuming you have a Put method in WebRequestHandler
+            var response = new WebRequestHandler().Put($"/Application/{c.Id}", c).Result;
+            try
+            {
+                var updatedApplication = JsonConvert.DeserializeObject<ApplicationDTO>(response);
+                if (updatedApplication != null)
+                {
+                    var existingApplication = applications.FirstOrDefault(app => app.Id == updatedApplication.Id);
+                    if (existingApplication != null)
+                    {
+                        var index = applications.IndexOf(existingApplication);
+                        applications.RemoveAt(index);
+                        applications.Insert(index, updatedApplication);
+                    }
+                }
+            }
+            catch (JsonReaderException ex)
+            {
+                Console.WriteLine("Failed to deserialize response: " + ex.Message);
+            }
+
+
+        }
+
+        private void Add(ApplicationDTO c)
+        {
+            var response = new WebRequestHandler().Post("/Application", c).Result;
+            var newApplication = JsonConvert.DeserializeObject<ApplicationDTO>(response);
+            if (newApplication != null)
+            {
+                applications.Add(newApplication);
+            }
+        }
+
+
     }
 }

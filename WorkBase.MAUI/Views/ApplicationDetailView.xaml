@@ -47,7 +47,7 @@
                     Text="Date Applied: " />
             <Entry Grid.Column="1" Text="{Binding Path=Model.DateApplied}"/>
         </Grid>
-        <Grid>
+        <!--<Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="11*"/>
@@ -56,7 +56,7 @@
        Padding="10"
        Text="Application Status: " />
             <Entry Grid.Column="1" Text="{Binding Path=Model.Status}"/>
-        </Grid>
+        </Grid>-->
        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>

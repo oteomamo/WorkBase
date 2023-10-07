@@ -97,6 +97,33 @@ namespace WorkBase.Library.Utilities
 
         }
 
+        public async Task<string> Put(string url, object obj)
+        {
+            var fullUrl = $"http://{host}:{port}{url}";
+            using (var client = new HttpClient())
+            {
+                using (var request = new HttpRequestMessage(HttpMethod.Put, fullUrl))
+                {
+                    var json = JsonConvert.SerializeObject(obj);
+                    using (var stringContent = new StringContent(json, Encoding.UTF8, "application/json"))
+                    {
+                        request.Content = stringContent;
+                        using (var response = await client
+                            .SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
+                            .ConfigureAwait(false))
+                        {
+                            if (response.IsSuccessStatusCode)
+                            {
+                                return await response.Content.ReadAsStringAsync();
+                            }
+                            return "ERROR";
+                        }
+                    }
+                }
+            }
+        }
+
+
 
     }
 }
