@@ -95,21 +95,44 @@ namespace WorkBase.Library.Services
 
         public void AddOrUpdate(UserDTO c)
         {
+            try
+            {
+                var response = new WebRequestHandler().Post("/User", c).Result;
+                var updatedUser = JsonConvert.DeserializeObject<UserDTO>(response);
+                if (updatedUser != null)
+                {
+                    var existingUser = users.FirstOrDefault(user => user.Id == updatedUser.Id);
+                    if (existingUser == null)
+                    {
+                        users.Add(updatedUser);
+                    }
+                    else
+                    {
+                        var index = users.IndexOf(existingUser);
+                        users[index] = updatedUser;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception, maybe log it or display an alert.
+            }
+        }
+
+        public void Update(UserDTO c)
+        {
             var response = new WebRequestHandler().Post("/User", c).Result;
             var updatedUser = JsonConvert.DeserializeObject<UserDTO>(response);
             if (updatedUser != null)
             {
                 var existingUser = users.FirstOrDefault(user => user.Id == updatedUser.Id);
-                if (existingUser == null)
-                {
-                    users.Add(updatedUser);
-                }
-                else
+                if (existingUser != null)
                 {
                     var index = users.IndexOf(existingUser);
                     users[index] = updatedUser;
                 }
             }
         }
+
     }
 }

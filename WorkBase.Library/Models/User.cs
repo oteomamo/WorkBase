@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WorkBase.Library.DTO;
+using WorkBase.Library.Services;
 
 namespace WorkBase.Library.Models
 {
@@ -15,8 +16,22 @@ namespace WorkBase.Library.Models
 
         public string Password { get; set; }
 
-        public int TotalApplications { get; set; }
+        public int TotalApplications
+        {
+            get
+            {
+                return ApplicationService.Current.GetApplicationsByUserId(this.Id).Count;
+            }
+        }
+
         public bool ActiveApplication { get; set; }
+        public int TotalActiveApplications
+        {
+            get
+            {
+                return ApplicationService.Current.GetPendingApplicationsByUserId(this.Id).Count;
+            }
+        }
 
         public List<Application>? Applications { get; set; }
 
@@ -27,9 +42,9 @@ namespace WorkBase.Library.Models
             Name = string.Empty;
             EmailAddress = string.Empty;
             Password = string.Empty;
-            TotalApplications = 0;
             ActiveApplication = false;
             Applications = new List<Application>();
+
         }
 
         public User(UserDTO dto)
@@ -38,7 +53,6 @@ namespace WorkBase.Library.Models
             this.Name = dto.Name;
             this.EmailAddress = dto.EmailAddress;
             this.Password = dto.Password;
-            this.TotalApplications = dto.TotalApplications;
             this.ActiveApplication = dto.ActiveApplication;
             this.Applications = dto.Applications;
 

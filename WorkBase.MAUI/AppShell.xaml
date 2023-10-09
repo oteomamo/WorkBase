@@ -27,5 +27,9 @@
     Title="Application Details"
     ContentTemplate="{DataTemplate local2:ApplicationDetailView}"
     Route="ApplicationDetail" />
+    <ShellContent
+    Title="User Settings"
+    ContentTemplate="{DataTemplate local2:UserSettingsView}"
+    Route="UserSettingsView" />
 
 </Shell>

@@ -79,6 +79,16 @@ namespace WorkBase.MAUI.ViewModels
                 (c) => ExecuteDelete((c as UserViewModel).Model.Id));
             EditCommand = new Command(
                 (c) => ExecuteEdit((c as UserViewModel).Model.Id));
+            UpdateCommand = new Command(
+                (c) =>
+                {
+                    var userVM = c as UserViewModel;
+                    if (userVM?.Model != null)
+                    {
+                        ExecuteUpdate(userVM.Model.Id);
+                    }
+                });
+
             AddCommand = new Command(
                 (c) => ExecuteAdd((c as UserViewModel).Model.Id));
             AddApplicationCommand = new Command(ExecuteAddApplication);
@@ -86,6 +96,8 @@ namespace WorkBase.MAUI.ViewModels
 
         public ICommand AddCommand { get; private set; }
         public ICommand EditCommand { get; private set; }
+
+        public ICommand UpdateCommand { get; private set; }
         public ICommand DeleteCommand { get; private set; }
         public ICommand AddApplicationCommand { get; private set; }
 
@@ -102,6 +114,11 @@ namespace WorkBase.MAUI.ViewModels
         public void ExecuteEdit(int id)
         {
             Shell.Current.GoToAsync($"//UserDetail?userId={id}");
+        }
+
+        public void ExecuteUpdate(int id)
+        {
+            Shell.Current.GoToAsync($"//UserSettingsView?userId={id}");
         }
 
         public void ExecuteAdd(int id)
@@ -121,7 +138,7 @@ namespace WorkBase.MAUI.ViewModels
 
         public void Update()
         {
-            UserService.Current.AddOrUpdate(Model);
+            UserService.Current.Update(Model);
         }
 
         public void RefreshApplications()

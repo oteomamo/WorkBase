@@ -83,6 +83,11 @@ namespace WorkBase.MAUI.ViewModels
             ApplicationService.Current.AddOrUpdate(Model);
         }
 
+        public void Update()
+        {
+            ApplicationService.Current.Update(Model);
+        }
+
         public ApplicationViewModel()
         {
             Model = new ApplicationDTO();

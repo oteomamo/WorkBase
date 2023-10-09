@@ -8,11 +8,7 @@ using WorkBase.Library.DTO;
 
 namespace WorkBase.Library.Models
 {
-/*    public enum ApplicationStatus
-    {
-        Pending,
-        Closed
-    }*/
+
     public class Application
     {
         public int Id { get; set; }
@@ -20,7 +16,8 @@ namespace WorkBase.Library.Models
         public string JobTitle { get; set; }
         public string JobPosting { get; set; }
         public DateTime DateApplied { get; set; }
-        //public ApplicationStatus Status { get; set; }
+        
+        public bool ApplicationStatus { get; set; }
         public string Notes { get; set; }
 
         public int UserId { get; set; }
@@ -32,7 +29,7 @@ namespace WorkBase.Library.Models
             JobTitle = string.Empty;
             JobPosting = string.Empty;
             DateApplied = DateTime.Now;
-            //Status = ApplicationStatus.Pending;
+            ApplicationStatus = true;
             Notes = string.Empty;
             UserId = 0;
         }
@@ -44,14 +41,14 @@ namespace WorkBase.Library.Models
             this.JobTitle = dto.JobTitle;
             this.JobPosting = dto.JobPosting;
             this.DateApplied = dto.DateApplied;
-            //this.Status = (ApplicationStatus)dto.Status;
+            this.ApplicationStatus = dto.ApplicationStatus;
             this.Notes = dto.Notes;
             this.UserId = dto.UserId;
         }
 
         public override string ToString()
         {
-            return string.Format(" Id: {0,-3}\tEmployerName: {1,-20}\tJobTitle: {2,-20}\tApplicationStatus: {4,-5}", Id, Company, JobTitle);
+            return string.Format("Id: {0,-3}\tEmployerName: {1,-40}\tJobTitle: {2,-40}\n\tApplicationStatus: {3,-5}", Id, Company, JobTitle, ApplicationStatus);
         }
     }
 }

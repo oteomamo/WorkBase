@@ -6,11 +6,13 @@
              x:Class="WorkBase.MAUI.Views.ApplicationDetailView"
              Title="ApplicationDetailView"
              NavigatedTo="OnArrived">
-    <VerticalStackLayout>
+    <Grid HorizontalOptions="CenterAndExpand" Padding="0,100,0,0">
+        <Grid WidthRequest="700">
+            <VerticalStackLayout>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="11*"/>
+                <ColumnDefinition Width="500"/>
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0"
                    Padding="10"
@@ -20,7 +22,7 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="11*"/>
+                <ColumnDefinition Width="500"/>
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0"
                    Padding="10"
@@ -30,7 +32,7 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="11*"/>
+                <ColumnDefinition Width="500"/>
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0"
                    Padding="10"
@@ -40,37 +42,41 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="11*"/>
+                <ColumnDefinition Width="500"/>
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0"
                     Padding="10"
                     Text="Date Applied: " />
             <Entry Grid.Column="1" Text="{Binding Path=Model.DateApplied}"/>
         </Grid>
-        <!--<Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="11*"/>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0"
-       Padding="10"
-       Text="Application Status: " />
-            <Entry Grid.Column="1" Text="{Binding Path=Model.Status}"/>
-        </Grid>-->
-       <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="11*"/>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0"
-               Padding="10"
-               Text="User ID" />
-            <Entry Grid.Column="1" Text="{Binding Path=Model.UserId}"/>
-        </Grid>        
+
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="11*"/>
+                <ColumnDefinition Width="500"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0"
+           Padding="10"
+           Text="Application Status: " />
+            <Picker Grid.Column="1" SelectedItem="{Binding Path=Model.ApplicationStatus}" Title="Select Status">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:Boolean}">
+                        <x:Boolean>True</x:Boolean>
+                        <x:Boolean>False</x:Boolean>
+                    </x:Array>
+                </Picker.ItemsSource>
+                <Picker.ItemDisplayBinding>
+                    <Binding StringFormat="{}{0:Pending;Closed}"/>
+                </Picker.ItemDisplayBinding>
+            </Picker>
+        </Grid>
+
+
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="500"/>
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0"
                    Padding="10"
@@ -79,4 +85,6 @@
         </Grid>
         <Button Text="Save" Clicked="OkClicked"/>
     </VerticalStackLayout>
+        </Grid>
+    </Grid>
 </ContentPage>

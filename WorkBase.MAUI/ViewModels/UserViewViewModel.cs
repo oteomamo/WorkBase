@@ -59,7 +59,7 @@ namespace WorkBase.MAUI.ViewModels
         }
 
 
-        public void RefreshClientList()
+        public void RefreshUser()
         {
             NotifyPropertyChanged(nameof(Users));
         }

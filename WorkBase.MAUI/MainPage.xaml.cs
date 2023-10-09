@@ -42,7 +42,7 @@ namespace WorkBase.MAUI
                 //(BindingContext as UserViewViewModel).RefreshClientList();
                 if (BindingContext is UserViewViewModel viewModel)
                 {
-                    viewModel.RefreshClientList();
+                    viewModel.RefreshUser();
                 }
             }
             catch (Exception ex)

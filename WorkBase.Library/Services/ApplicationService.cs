@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using WorkBase.Library.DTO;
 using WorkBase.Library.Models;
 using WorkBase.Library.Utilities;
+using Newtonsoft.Json.Converters;
+
 
 namespace WorkBase.Library.Services
 {
@@ -76,45 +78,34 @@ namespace WorkBase.Library.Services
             }
         }
 
-        /*        public void AddOrUpdate(ApplicationDTO c)
-                {
-                    var response = new WebRequestHandler()
-                        .Post("/Application", c).Result;
-                    var myUpdatedApplications = JsonConvert.DeserializeObject<ApplicationDTO>(response);
-                    if (myUpdatedApplications != null)
-                    {
-                        var existingApplication = applications.FirstOrDefault(c => c.Id == myUpdatedApplications.Id);
-                        if (existingApplication == null)
-                        {
-                            applications.Add(myUpdatedApplications);
-                        }
-                        else
-                        {
-                            var index = applications.IndexOf(existingApplication);
-                            applications.RemoveAt(index);
-                            applications.Insert(index, myUpdatedApplications);
-                        }
-                    }
-                }*/
+        public List<ApplicationDTO> GetApplicationsByUserId(int userId)
+        {
+            return Applications.Where(app => app.UserId == userId).ToList();
+        }
+
+        public List<ApplicationDTO> GetPendingApplicationsByUserId(int userId)
+        {
+            return Applications.Where(app => app.UserId == userId && app.ApplicationStatus).ToList();
+        }
+
+
+
 
         public void AddOrUpdate(ApplicationDTO c)
         {
             if (c.Id > 0)
             {
-                // Update existing application logic
                 Update(c);
             }
             else
             {
-                // Add new application logic
                 Add(c);
             }
         }
 
 
-        private void Update(ApplicationDTO c)
+        public void Update(ApplicationDTO c)
         {
-            // Assuming you have a Put method in WebRequestHandler
             var response = new WebRequestHandler().Put($"/Application/{c.Id}", c).Result;
             try
             {

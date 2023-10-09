@@ -1,5 +1,6 @@
 using WorkBase.Library.Services;
 using WorkBase.MAUI.ViewModels;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace WorkBase.MAUI.Views;
 [QueryProperty(nameof(UserId), "userId")]
@@ -11,7 +12,21 @@ public partial class UserDetailView : ContentPage
     public UserDetailView()
 	{
 		InitializeComponent();
-	}
+        this.SizeChanged += OnPageSizeChanged;
+    }
+
+    private void OnPageSizeChanged(object sender, EventArgs e)
+    {
+        ApplicationsListView.HeightRequest = this.Height * 0.7;
+    }
+
+    private void SettingsClicked(object sender, EventArgs e)
+    {
+        BindingContext = new UserViewModel(UserId);
+    }
+
+
+
 
     private void OpenClicked(object sender, EventArgs e)
     {
@@ -34,11 +49,12 @@ public partial class UserDetailView : ContentPage
     }
 
 
+
+
     private void EditClicked(object sender, EventArgs e)
     {
         (BindingContext as ApplicationViewViewModel).RefreshApplicationList();
     }
-
     private void OnArrived(object sender, NavigatedToEventArgs e)
     {
         BindingContext = new UserViewModel(UserId);
@@ -64,15 +80,25 @@ public partial class UserDetailView : ContentPage
         set
         {
             userId = value;
-            OnUserIdChanged();  // New method to handle changes
+            OnUserIdChanged();  
         }
     }
 
     private void OnUserIdChanged()
     {
-        BindingContext = new UserViewModel(UserId);
-        (BindingContext as UserViewModel)?.RefreshApplications();
+        
+        try
+        {
+            BindingContext = new UserViewModel(UserId);
+        Console.WriteLine($"Fetched User Name: {(BindingContext as UserViewModel)?.Model?.Name}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error fetching user data: {ex.Message}");
+        }
     }
+
+
 
     private void OpenApplicationClicked(object sender, EventArgs e)
     {
