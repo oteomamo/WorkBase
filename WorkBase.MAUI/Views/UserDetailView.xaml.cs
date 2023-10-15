@@ -110,6 +110,7 @@ public partial class UserDetailView : ContentPage
             Shell.Current.GoToAsync($"//ApplicationDetail?userId={userId}&applicationId={applicationId}");
         }
     }
+
     private void DeleteClicked(object sender, EventArgs e)
     {
         var button = sender as Button;
@@ -120,6 +121,8 @@ public partial class UserDetailView : ContentPage
             var viewModel = BindingContext as UserViewModel;
             viewModel?.RefreshApplications();
         }
+        //(BindingContext as ApplicationViewViewModel).RefreshApplicationList();
+
     }
 
 

@@ -26,23 +26,25 @@ namespace WorkBase.MAUI.ViewModels
             }
         }
 
+        private ObservableCollection<ApplicationViewModel> _applications;
         public ObservableCollection<ApplicationViewModel> Applications
         {
-            get
+            get { return _applications; }
+            set
             {
-                if (Model == null || Model.Id == 0)
+                if (_applications != value)
                 {
-                    return new ObservableCollection<ApplicationViewModel>();
+                    _applications = value;
+                    NotifyPropertyChanged();
                 }
-                return new ObservableCollection<ApplicationViewModel>(ApplicationService
-                    .Current.Applications.Where(p => p.UserId == Model.Id)
-                    .Select(r => new ApplicationViewModel(r)));
             }
         }
+
 
         public UserViewModel(UserDTO user)
         {
             Model = user;
+            RefreshApplications();
             SetupCommands();
         }
 
@@ -143,8 +145,19 @@ namespace WorkBase.MAUI.ViewModels
 
         public void RefreshApplications()
         {
-            NotifyPropertyChanged(nameof(Applications));
+            if (Model == null || Model.Id <= 0)
+            {
+                Applications = new ObservableCollection<ApplicationViewModel>();
+            }
+            else
+            {
+                Applications = new ObservableCollection<ApplicationViewModel>(ApplicationService
+                    .Current.Applications.Where(p => p.UserId == Model.Id)
+                    .Select(r => new ApplicationViewModel(r)));
+            }
         }
+
+
 
 
         public event PropertyChangedEventHandler PropertyChanged;

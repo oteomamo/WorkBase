@@ -16,19 +16,20 @@ namespace WorkBase.MAUI.ViewModels
     {
         public ApplicationDTO Model { get; set; }
 
+        private ObservableCollection<ApplicationViewModel> _applications;
         public ObservableCollection<ApplicationViewModel> Applications
         {
-            get
+            get { return _applications; }
+            set
             {
-                if (Model == null || Model.Id == 0)
+                if (_applications != value)
                 {
-                    return new ObservableCollection<ApplicationViewModel>();
+                    _applications = value;
+                    NotifyPropertyChanged();
                 }
-                return new ObservableCollection<ApplicationViewModel>(ApplicationService
-                    .Current.Applications.Where(p => p.UserId == Model.Id)
-                    .Select(r => new ApplicationViewModel(r)));
             }
         }
+
 
 
 
@@ -65,8 +66,11 @@ namespace WorkBase.MAUI.ViewModels
 
         public void RefreshApplications()
         {
-            NotifyPropertyChanged(nameof(Applications));
+            Applications = new ObservableCollection<ApplicationViewModel>(ApplicationService
+                .Current.Applications.Where(p => p.UserId == Model.Id)
+                .Select(r => new ApplicationViewModel(r)));
         }
+
 
         public void SetupCommands()
         {

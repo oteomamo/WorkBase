@@ -28,17 +28,20 @@ namespace WorkBase.MAUI.ViewModels
         }
 
 
+        private ObservableCollection<UserViewModel> _users;
         public ObservableCollection<UserViewModel> Users
         {
-            get
+            get { return _users; }
+            set
             {
-                return
-                    new ObservableCollection<UserViewModel>
-                    (UserService
-                        .Current.Search(Query ?? string.Empty)
-                        .Select(c => new UserViewModel(c)).ToList());
+                if (_users != value)
+                {
+                    _users = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -61,7 +64,10 @@ namespace WorkBase.MAUI.ViewModels
 
         public void RefreshUser()
         {
-            NotifyPropertyChanged(nameof(Users));
+            Users = new ObservableCollection<UserViewModel>(
+                UserService.Current.Search(Query ?? string.Empty)
+                .Select(c => new UserViewModel(c)).ToList());
         }
+
     }
 }

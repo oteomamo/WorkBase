@@ -52,7 +52,7 @@
                                     SearchCommand="{Binding SearchCommand}"/>
                         <Button Grid.Column="1" Text="Add Application" Command="{Binding AddApplicationCommand}"/>
                     </Grid>
-                    <ListView x:Name="ApplicationsListView" ItemsSource="{Binding Applications}" VerticalScrollBarVisibility="Always">
+                    <ListView x:Name="ApplicationsListView" ItemsSource="{Binding Path=Applications}" SelectedItem="{Binding Path=AselectedApplication}" VerticalScrollBarVisibility="Always">
                         <ListView.ItemTemplate >
                             <DataTemplate>
                                 <ViewCell>
@@ -69,7 +69,7 @@
                                                 Clicked="OpenApplicationClicked"/>
                                         <Button Grid.Column="2" 
                                                 ImageSource="icons8_delete_48.png" 
-                                                Command="{Binding DeleteCommand}"
+                                                Command="{Binding Path=DeleteCommand}"
                                                 CommandParameter="{Binding}"
                                                 Clicked="DeleteClicked"/>
                                     </Grid>
