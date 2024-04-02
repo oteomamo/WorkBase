@@ -1,6 +1,6 @@
 # WorkBase
 
-WorkBase, developed using .NET, is a management platform tailored for recent college graduates, aiming to centralize and simplify job application and interview tracking. Its core boasts a versatile relational database system with User and Application entities, accommodating varied data storage needs, such as organizing challenges from LeetCode. Furthermore, it employs user-defined matrices for improved alerting and info management, ensuring a dynamic, customizable user experience.
+WorkBase, developed using .NET framework, is a management platform tailored for recent college graduates, aiming to centralize and simplify job application and interview tracking. Its core boasts a versatile relational database system with User and Application entities, accommodating varied data storage needs, such as organizing challenges from LeetCode. Furthermore, it employs user-defined matrices for improved alerting and info management, ensuring a dynamic, customizable user experience.
 
 ## Features
 
